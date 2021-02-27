@@ -8,11 +8,13 @@
         xmlns:wt="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
-        Title="WpfMailSender" Height="450" Width="800">
+        Title="{Binding Title}"
+        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
+        Height="450" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="Выход"/>
+                <MenuItem Header="Выход" Command="{StaticResource CloseAppCommand}"/>
             </MenuItem>
             <MenuItem Header="Справка">
                 <MenuItem Header="Помощь"/>
@@ -24,14 +26,16 @@
             <StatusBarItem DockPanel.Dock="Right">
                 <ResizeGrip/>
             </StatusBarItem>
-            <StatusBarItem />
+            <StatusBarItem Content="{Binding Status}"/>
         </StatusBar>
         <TabControl>
             <TabItem Header="Формирование группы рассылки">
                 <DockPanel>
                     <ToolBarTray DockPanel.Dock="Top">
                         <ToolBar Band="1">
-                            <contr:ItemsPanel Title="Сервера"/>
+                            <contr:ItemsPanel Title="Сервера" 
+                                              ItemTemplate="{Binding Servers}"
+                                              />
                         </ToolBar>
                     </ToolBarTray>
                 </DockPanel>

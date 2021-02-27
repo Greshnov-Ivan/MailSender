@@ -132,26 +132,26 @@ namespace MailSender.Controls
 
         //#endregion
 
-        //#region ItemTemplate : DataTemplate - Шаблон элемента выпадающего списка
+        #region ItemTemplate : DataTemplate - Шаблон элемента выпадающего списка
 
-        ///// <summary>Шаблон элемента выпадающего списка</summary>
-        //public static readonly DependencyProperty ItemTemplateProperty =
-        //    DependencyProperty.Register(
-        //        nameof(ItemTemplate),
-        //        typeof(DataTemplate),
-        //        typeof(ItemsPanel),
-        //        new PropertyMetadata(default(DataTemplate)));
+        /// <summary>Шаблон элемента выпадающего списка</summary>
+        public static readonly DependencyProperty ItemTemplateProperty =
+            DependencyProperty.Register(
+                nameof(ItemTemplate),
+                typeof(DataTemplate),
+                typeof(ItemsPanel),
+                new PropertyMetadata(default(DataTemplate)));
 
-        ///// <summary>Шаблон элемента выпадающего списка</summary>
-        ////[Category("")]
-        //[Description("Шаблон элемента выпадающего списка")]
-        //public DataTemplate ItemTemplate
-        //{
-        //    get => (DataTemplate)GetValue(ItemTemplateProperty);
-        //    set => SetValue(ItemTemplateProperty, value);
-        //}
+        /// <summary>Шаблон элемента выпадающего списка</summary>
+        //[Category("")]
+        [Description("Шаблон элемента выпадающего списка")]
+        public DataTemplate ItemTemplate
+        {
+            get => (DataTemplate)GetValue(ItemTemplateProperty);
+            set => SetValue(ItemTemplateProperty, value);
+        }
 
-        //#endregion
+        #endregion
 
         //#region DisplayMemberPath : string - Имя отображаемого свойства
 
