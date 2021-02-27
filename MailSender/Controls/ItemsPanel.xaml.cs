@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MailSender.Controls
 {
@@ -33,7 +24,7 @@ namespace MailSender.Controls
 
         #region AddNewItemCommand : ICommand - Добавление нового элемента
 
-        // <summary>Добавление нового элемента</summary>
+        /// <summary>Добавление нового элемента</summary>
         public static readonly DependencyProperty AddNewItemCommandProperty =
             DependencyProperty.Register(
                 nameof(AddNewItemCommand),
@@ -52,85 +43,85 @@ namespace MailSender.Controls
 
         #endregion
 
-        //#region EditItemCommand : ICommand - Редактирование элемента
+        #region EditItemCommand : ICommand - Редактирование элемента
 
-        ///// <summary>Редактирование элемента</summary>
-        //public static readonly DependencyProperty EditItemCommandProperty =
-        //    DependencyProperty.Register(
-        //        nameof(EditItemCommand),
-        //        typeof(ICommand),
-        //        typeof(ItemsPanel),
-        //        new PropertyMetadata(default(ICommand)));
+        /// <summary>Редактирование элемента</summary>
+        public static readonly DependencyProperty EditItemCommandProperty =
+            DependencyProperty.Register(
+                nameof(EditItemCommand),
+                typeof(ICommand),
+                typeof(ItemsPanel),
+                new PropertyMetadata(default(ICommand)));
 
-        ///// <summary>Редактирование элемента</summary>
-        ////[Category("")]
-        //[Description("Редактирование элемента")]
-        //public ICommand EditItemCommand
-        //{
-        //    get => (ICommand)GetValue(EditItemCommandProperty);
-        //    set => SetValue(EditItemCommandProperty, value);
-        //}
+        /// <summary>Редактирование элемента</summary>
+        //[Category("")]
+        [Description("Редактирование элемента")]
+        public ICommand EditItemCommand
+        {
+            get => (ICommand)GetValue(EditItemCommandProperty);
+            set => SetValue(EditItemCommandProperty, value);
+        }
 
-        //#endregion
+        #endregion
 
-        //#region RemoveItemCommand : ICommand - Удаление элемента
+        #region RemoveItemCommand : ICommand - Удаление элемента
 
-        ///// <summary>Удаление элемента</summary>
-        //public static readonly DependencyProperty RemoveItemCommandProperty =
-        //    DependencyProperty.Register(
-        //        nameof(RemoveItemCommand),
-        //        typeof(ICommand),
-        //        typeof(ItemsPanel),
-        //        new PropertyMetadata(default(ICommand)));
+        /// <summary>Удаление элемента</summary>
+        public static readonly DependencyProperty RemoveItemCommandProperty =
+            DependencyProperty.Register(
+                nameof(RemoveItemCommand),
+                typeof(ICommand),
+                typeof(ItemsPanel),
+                new PropertyMetadata(default(ICommand)));
 
-        ///// <summary>Удаление элемента</summary>
-        ////[Category("")]
-        //[Description("Удаление элемента")]
-        //public ICommand RemoveItemCommand
-        //{
-        //    get => (ICommand)GetValue(RemoveItemCommandProperty);
-        //    set => SetValue(RemoveItemCommandProperty, value);
-        //}
+        /// <summary>Удаление элемента</summary>
+        //[Category("")]
+        [Description("Удаление элемента")]
+        public ICommand RemoveItemCommand
+        {
+            get => (ICommand)GetValue(RemoveItemCommandProperty);
+            set => SetValue(RemoveItemCommandProperty, value);
+        }
 
-        //#endregion
+        #endregion
 
-        //#region ItemSource : IEnumerable - Элементы панели
+        #region ItemSource : IEnumerable - Элементы панели
 
-        ///// <summary>Элементы панели</summary>
-        //public static readonly DependencyProperty ItemSourceProperty =
-        //    DependencyProperty.Register(
-        //        nameof(ItemSource),
-        //        typeof(IEnumerable),
-        //        typeof(ItemsPanel),
-        //        new PropertyMetadata(default(IEnumerable)));
+        /// <summary>Элементы панели</summary>
+        public static readonly DependencyProperty ItemSourceProperty =
+            DependencyProperty.Register(
+                nameof(ItemSource),
+                typeof(IEnumerable),
+                typeof(ItemsPanel),
+                new PropertyMetadata(default(IEnumerable)));
 
-        ///// <summary>Элементы панели</summary>
-        ////[Category("")]
-        //[Description("Элементы панели")]
-        //public IEnumerable ItemSource
-        //{
-        //    get => (IEnumerable)GetValue(ItemSourceProperty);
-        //    set => SetValue(ItemSourceProperty, value);
-        //}
+        /// <summary>Элементы панели</summary>
+        //[Category("")]
+        [Description("Элементы панели")]
+        public IEnumerable ItemSource
+        {
+            get => (IEnumerable)GetValue(ItemSourceProperty);
+            set => SetValue(ItemSourceProperty, value);
+        }
 
-        //#endregion
+        #endregion
 
-        //#region SelectedItem : object - Выбранный элемент
+        #region SelectedItem : object - Выбранный элемент
 
-        ///// <summary>Выбранный элемент</summary>
-        //public static readonly DependencyProperty SelectedItemProperty =
-        //    DependencyProperty.Register(
-        //        nameof(SelectedItem),
-        //        typeof(object),
-        //        typeof(ItemsPanel),
-        //        new PropertyMetadata(default(object)));
+        /// <summary>Выбранный элемент</summary>
+        public static readonly DependencyProperty SelectedItemProperty =
+            DependencyProperty.Register(
+                nameof(SelectedItem),
+                typeof(object),
+                typeof(ItemsPanel),
+                new PropertyMetadata(default(object)));
 
-        ///// <summary>Выбранный элемент</summary>
-        ////[Category("")]
-        //[Description("Выбранный элемент")]
-        //public object SelectedItem { get => (object)GetValue(SelectedItemProperty); set => SetValue(SelectedItemProperty, value); }
+        /// <summary>Выбранный элемент</summary>
+        //[Category("")]
+        [Description("Выбранный элемент")]
+        public object SelectedItem { get => (object)GetValue(SelectedItemProperty); set => SetValue(SelectedItemProperty, value); }
 
-        //#endregion
+        #endregion
 
         #region ItemTemplate : DataTemplate - Шаблон элемента выпадающего списка
 
@@ -153,22 +144,22 @@ namespace MailSender.Controls
 
         #endregion
 
-        //#region DisplayMemberPath : string - Имя отображаемого свойства
+        #region DisplayMemberPath : string - Имя отображаемого свойства
 
-        ///// <summary>Имя отображаемого свойства</summary>
-        //public static readonly DependencyProperty DisplayMemberPathProperty =
-        //    DependencyProperty.Register(
-        //        nameof(DisplayMemberPath),
-        //        typeof(string),
-        //        typeof(ItemsPanel),
-        //        new PropertyMetadata(default(string)));
+        /// <summary>Имя отображаемого свойства</summary>
+        public static readonly DependencyProperty DisplayMemberPathProperty =
+            DependencyProperty.Register(
+                nameof(DisplayMemberPath),
+                typeof(string),
+                typeof(ItemsPanel),
+                new PropertyMetadata(default(string)));
 
-        ///// <summary>Имя отображаемого свойства</summary>
-        ////[Category("")]
-        //[Description("Имя отображаемого свойства")]
-        //public string DisplayMemberPath { get => (string)GetValue(DisplayMemberPathProperty); set => SetValue(DisplayMemberPathProperty, value); }
+        /// <summary>Имя отображаемого свойства</summary>
+        //[Category("")]
+        [Description("Имя отображаемого свойства")]
+        public string DisplayMemberPath { get => (string)GetValue(DisplayMemberPathProperty); set => SetValue(DisplayMemberPathProperty, value); }
 
-        //#endregion
+        #endregion
 
         public ItemsPanel() => InitializeComponent();
     }

@@ -20,11 +20,20 @@
                     <Setter Property="BorderThickness" Value="0"/>
                 </Style>
             </StackPanel.Resources>
-            <Button ToolTip="Добавить" fa:Awesome.Content="Solid_Plus" Foreground="DarkGreen" Width="30"/>
-            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit" Foreground="DarkBlue" Width="30"/>
-            <Button ToolTip="Удалить" fa:Awesome.Content="Solid_WindowClose" Foreground="DarkRed" Width="30"/>
+            <Button Command="{Binding AddNewItemCommand, RelativeSource={RelativeSource AncestorType=l:ItemsPanel}}"
+                    ToolTip="Добавить" fa:Awesome.Content="Solid_Plus" Foreground="DarkGreen" Width="30"/>
+            <Button Command="{Binding EditItemCommand, RelativeSource={RelativeSource AncestorType=l:ItemsPanel}}"
+                    CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=l:ItemsPanel}}"
+                ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit" Foreground="DarkBlue" Width="30"/>
+            <Button Command="{Binding RemoveItemCommand, RelativeSource={RelativeSource AncestorType=l:ItemsPanel}}"
+                    CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=l:ItemsPanel}}"
+                ToolTip="Удалить" fa:Awesome.Content="Solid_WindowClose" Foreground="DarkRed" Width="30"/>
         </StackPanel>
-        <ComboBox DisplayMemberPath="Name" MinWidth="120" ToolTip="Выбрать email отправителя" SelectedIndex="0" Margin="3,0" Padding="5,0,0,0">
+        <ComboBox ItemsSource="{Binding ItemSource, RelativeSource={RelativeSource AncestorType=l:ItemsPanel}}"
+                  SelectedItem="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=l:ItemsPanel}}"
+                  ItemTemplate="{Binding ItemTemplate, RelativeSource={RelativeSource AncestorType=l:ItemsPanel}}"
+                  DisplayMemberPath="{Binding DisplayMemberPath, RelativeSource={RelativeSource AncestorType=l:ItemsPanel}}"
+                  SelectedIndex="0" Margin="3,0" VerticalContentAlignment="Center" Padding="5,0,0,0">
         </ComboBox>
     </DockPanel>
 </UserControl>
