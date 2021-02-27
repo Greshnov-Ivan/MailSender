@@ -37,22 +37,208 @@
                     <ToolBarTray DockPanel.Dock="Top">
                         <ToolBar Band="1">
                             <contr:ItemsPanel Title="Сервера" 
-                                              ItemTemplate="{Binding Servers}"
-                                              />
+                                              ItemTemplate="{Binding Servers}"/>
                         </ToolBar>
                     </ToolBarTray>
+                    <GroupBox Header="Список получателей" Margin="3">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                            <views:RecipientsView Grid.Column="0"/>
+                            <views:RecipientEditor Grid.Column="1"/>
+                        </Grid>
+                    </GroupBox>
                 </DockPanel>
             </TabItem>
 
             <TabItem x:Name="tabPlanner" Header="Планировщик">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="120"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Grid.Column="0" Header="Управление">
+                        <StackPanel>
+                            <TextBlock Text="Дата" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                            <Calendar/>
+                            <TextBlock Text="Время" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                            <TextBox Margin="10,0" HorizontalContentAlignment="Center"/>
+                            <StackPanel Margin="5,7">
+                                <StackPanel.Resources>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Margin" Value="0,3"/>
+                                        <Setter Property="Background" Value="White"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <Button Content="Запланировать"/>
+                                <Button Content="Отправить" Command="{Binding SendEmailCommand}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="Задания">
+                        <ListBox>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBoxItem>
+                                <GroupBox>
+                                    <GroupBox.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock VerticalAlignment="Center">Задание от 16.02.21 19:51:18</TextBlock>
+                                            <Button Margin="5,0,0,0" Background="Transparent" BorderThickness="0" Foreground="Red" FontWeight="Bold">X</Button>
+                                        </StackPanel>
+                                    </GroupBox.Header>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправитель:"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Иванов И.И."/>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Получатели:"/>
+                                        <ItemsControl Grid.Column="1" Grid.Row="1">
+                                            <TextBlock Text="Иванов И.И."/>
+                                            <TextBlock Text="Петров"/>
+                                            <TextBlock Text="Сидоров"/>
+                                        </ItemsControl>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Письмо:"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="2" Text="Тема письма"/>
+                                    </Grid>
+                                </GroupBox>
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                <GroupBox Header="Задание от 16.02.21 19:51:18">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправитель:"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Иванов И.И."/>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Получатели:"/>
+                                        <ItemsControl Grid.Column="1" Grid.Row="1">
+                                            <TextBlock Text="Иванов И.И."/>
+                                            <TextBlock Text="Петров"/>
+                                            <TextBlock Text="Сидоров"/>
+                                        </ItemsControl>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Письмо:"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="2" Text="Тема письма"/>
+                                    </Grid>
+                                </GroupBox>
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                <GroupBox Header="Задание от 16.02.21 19:51:18">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправитель:"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Иванов И.И."/>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Получатели:"/>
+                                        <ItemsControl Grid.Column="1" Grid.Row="1">
+                                            <TextBlock Text="Иванов И.И."/>
+                                            <TextBlock Text="Петров"/>
+                                            <TextBlock Text="Сидоров"/>
+                                        </ItemsControl>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Письмо:"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="2" Text="Тема письма"/>
+                                    </Grid>
+                                </GroupBox>
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                <GroupBox Header="Задание от 16.02.21 19:51:18">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправитель:"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Иванов И.И."/>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Получатели:"/>
+                                        <ItemsControl Grid.Column="1" Grid.Row="1">
+                                            <TextBlock Text="Иванов И.И."/>
+                                            <TextBlock Text="Петров"/>
+                                            <TextBlock Text="Сидоров"/>
+                                        </ItemsControl>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Письмо:"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="2" Text="Тема письма"/>
+                                    </Grid>
+                                </GroupBox>
+                            </ListBoxItem>
+                        </ListBox>
+                    </GroupBox>
+                    <GridSplitter Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="3" Background="Transparent"/>
+                </Grid>
             </TabItem>
 
             <TabItem Header="Редактор писем">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Grid.Column="0" Header="Письма">
+                        <ListBox MinWidth="120" ItemsSource="{Binding Messages}"
+                                 DisplayMemberPath="Title"
+                                 Name="MessagesList"/>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="Редактор">
+                        <DockPanel >
+                            <!-- DataContext="{Binding SelectedItem, ElementName=MessagesList}" -->
+                            <GroupBox DockPanel.Dock="Top" Header="Заголовок">
+                                <!--<TextBox Text="{Binding Title}"/>-->
+                                <TextBox Text="{Binding SelectedItem.Title, ElementName=MessagesList}"/>
+                            </GroupBox>
+                            <GroupBox Header="Текст письма">
+                                <!--<TextBox AcceptsReturn="True" AcceptsTab="True" Text="{Binding Text}"/>-->
+                                <TextBox AcceptsReturn="True" AcceptsTab="True" Text="{Binding SelectedItem.Text, ElementName=MessagesList}"/>
+                                <!--<RichTextBox/>-->
+                            </GroupBox>
+                        </DockPanel>
+                    </GroupBox>
+                </Grid>
             </TabItem>
 
-            <TabItem Header="Статистика">
-                <Grid Background="#FFE5E5E5">
-                </Grid>
+            <TabItem Header="Статистика"
+                     xmlns:v="clr-namespace:MailSender.Views">
+                <v:StatisticView/>
             </TabItem>
         </TabControl>
     </DockPanel>
